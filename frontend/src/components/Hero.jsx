@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ReactMediaRecorder, useReactMediaRecorder } from "react-media-recorder";
-
+import style from './Hero.module.css';
+import { FiPlayCircle } from "react-icons/fi";
+import stop from '../assets/stop.svg'
 export default function Hero() {
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({
     video: true,
@@ -25,7 +27,16 @@ export default function Hero() {
   };
 
   return (
-    <div>
+   
+
+
+
+<div className={style.main}>
+<div className={style.left_img}>
+  <img src="https://imgur.com/mzMWDGi.png" alt="pic" />
+</div>
+<div className={style.options}>
+<div>
       <ReactMediaRecorder
         video
         audio
@@ -36,17 +47,19 @@ export default function Hero() {
             {mediaBlobUrl ? (
               <>
                 <video src={mediaBlobUrl} controls />
-                <button onClick={handleDownload}>Download Video</button>
+                <button onClick={handleDownload}  className={style.icon}>Download Video</button>
               </>
             ) : (
               <>
-                <button onClick={startRecording}>Start Recording</button>
-                <button onClick={stopRecording}>Stop Recording</button>
+                <button ><FiPlayCircle onClick={startRecording} className={style.play}/></button>
+                <img src = {stop} alt='stop'  onClick={stopRecording} className={style.icon}/>
               </>
             )}
           </div>
         )}
       />
     </div>
+</div>
+</div>
   );
 }
